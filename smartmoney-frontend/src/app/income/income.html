@@ -1,0 +1,13 @@
+<h2>💰 Income Tracker</h2>
+
+<input type="text" placeholder="Source (e.g. Salary)" #source>
+<input type="number" placeholder="Amount" #amount>
+<button (click)="addIncome(source.value, amount.value)">Add</button>
+
+<h3>Total Income: {{ total | currency:'Ksh' }}</h3>
+
+<ul>
+  <li *ngFor="let i of incomes">
+    {{ i.source }} - {{ i.amount | currency:'Ksh' }}
+  </li>
+</ul>

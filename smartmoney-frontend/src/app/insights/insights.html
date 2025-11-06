@@ -1,0 +1,97 @@
+<div class="insights-container">
+  <h2>Personal Financial Insights</h2>
+  <p>Hi, here is your personal financial overview and recommendations:</p>
+
+  <!-- Dynamic insights from API -->
+  <div *ngIf="insights && insights.length > 0" class="cards-grid">
+    <div *ngFor="let insight of insights" class="insight-card">
+      <p>💡 <strong>Problem:</strong> {{ insight.problem }}</p>
+      <p>✅ <strong>Solution:</strong> {{ insight.solution }}</p>
+      <p *ngIf="insight.link">
+        🔗 <a [href]="insight.link" target="_blank" rel="noopener noreferrer">Learn more</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Static example insights (always visible) -->
+  <div class="cards-grid">
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Difficulty saving money consistently.<br>
+      ✅ <strong>Solution:</strong> Set up automatic transfers to a savings account each month.<br>
+      🔗 <a href="https://www.moneycrashers.com/how-to-save-money/" target="_blank" rel="noopener noreferrer">Read more tips</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Overspending on unnecessary items.<br>
+      ✅ <strong>Solution:</strong> Track your expenses weekly and create a realistic budget.<br>
+      🔗 <a href="https://www.investopedia.com/personal-finance-4689743" target="_blank" rel="noopener noreferrer">Learn budgeting strategies</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Not having an emergency fund.<br>
+      ✅ <strong>Solution:</strong> Save 3-6 months of expenses in a separate account for emergencies.<br>
+      🔗 <a href="https://www.nerdwallet.com/best/financial-advisors/emergency-fund" target="_blank" rel="noopener noreferrer">How to build an emergency fund</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Struggling to plan for retirement.<br>
+      ✅ <strong>Solution:</strong> Start contributing to retirement accounts (e.g., 401k, IRA) early and consistently.<br>
+      🔗 <a href="https://www.fidelity.com/viewpoints/retirement/plan-for-retirement" target="_blank" rel="noopener noreferrer">Retirement planning guide</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Impulsive spending habits.<br>
+      ✅ <strong>Solution:</strong> Wait 24 hours before making any non-essential purchase to reduce impulse buys.<br>
+      🔗 <a href="https://www.thebalance.com/how-to-stop-impulse-buying-5189456" target="_blank" rel="noopener noreferrer">Tips to control impulse spending</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Low financial literacy.<br>
+      ✅ <strong>Solution:</strong> Learn the basics of personal finance, investing, and money management.<br>
+      🔗 <a href="https://www.investopedia.com/personal-finance-4689743" target="_blank" rel="noopener noreferrer">Financial literacy resources</a>
+    </div>
+
+    <!-- Additional problem-solution cards -->
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> High-interest debt accumulation.<br>
+      ✅ <strong>Solution:</strong> Focus on paying off high-interest debt first using the avalanche or snowball method.<br>
+      🔗 <a href="https://www.nerdwallet.com/best/finance/debt-reduction-strategies" target="_blank" rel="noopener noreferrer">Debt reduction strategies</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> No budget plan in place.<br>
+      ✅ <strong>Solution:</strong> Create a monthly budget that tracks income, expenses, and savings goals.<br>
+      🔗 <a href="https://www.thebalance.com/how-to-create-a-budget-1289587" target="_blank" rel="noopener noreferrer">How to create a budget</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Lack of financial goals.<br>
+      ✅ <strong>Solution:</strong> Set clear short-term and long-term financial goals and review them monthly.<br>
+      🔗 <a href="https://www.investopedia.com/terms/f/financial-goal.asp" target="_blank" rel="noopener noreferrer">Financial goal setting guide</a>
+    </div>
+
+    <div class="insight-card">
+      💡 <strong>Problem:</strong> Not tracking subscriptions and recurring expenses.<br>
+      ✅ <strong>Solution:</strong> Review and cancel unused subscriptions to save money.<br>
+      🔗 <a href="https://www.moneycrashers.com/cut-monthly-subscriptions/" target="_blank" rel="noopener noreferrer">Cut unnecessary subscriptions</a>
+    </div>
+    <!-- Additional problem-solution cards (continued) -->
+<div class="insight-card">
+  💡 <strong>Problem:</strong> Not having an emergency savings strategy for unexpected expenses.<br>
+  ✅ <strong>Solution:</strong> Set aside a small percentage of each paycheck in a separate “emergency fund” account.<br>
+  🔗 <a href="https://www.nerdwallet.com/article/finance/emergency-fund" target="_blank" rel="noopener noreferrer">Emergency fund strategies</a>
+</div>
+
+<div class="insight-card">
+  💡 <strong>Problem:</strong> Poor investment diversification.<br>
+  ✅ <strong>Solution:</strong> Spread investments across stocks, bonds, and other assets to reduce risk.<br>
+  🔗 <a href="https://www.investopedia.com/terms/d/diversification.asp" target="_blank" rel="noopener noreferrer">Investment diversification tips</a>
+</div>
+
+  </div>
+
+  <!-- Fallback message for dynamic insights -->
+  <div *ngIf="(!insights || insights.length === 0)" class="no-insights">
+    No dynamic insights available yet. Add income and expenses to see personalized recommendations.
+  </div>
+</div>

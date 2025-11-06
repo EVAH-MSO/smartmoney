@@ -1,0 +1,13 @@
+<h2>💸 Expense Tracker</h2>
+
+<input type="text" placeholder="Category (e.g. Rent)" #category>
+<input type="number" placeholder="Amount" #amount>
+<button (click)="addExpense(category.value, amount.value)">Add</button>
+
+<h3>Total Expenses: {{ total | currency:'Ksh' }}</h3>
+
+<ul>
+  <li *ngFor="let e of expenses">
+    {{ e.category }} - {{ e.amount | currency:'Ksh' }}
+  </li>
+</ul>

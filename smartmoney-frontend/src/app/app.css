@@ -1,0 +1,32 @@
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: #f8eeee;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+a.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: rgb(174, 220, 220);
+  padding: 10px;
+  border-radius: 8px;
+  transition: all;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+
+}

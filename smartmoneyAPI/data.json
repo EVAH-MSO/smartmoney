@@ -1,0 +1,150 @@
+{
+    "admin": {
+        "income": [],
+        "expenses": []
+    },
+    "eva@example.com": {
+        "income": [
+            {
+                "category": "Financial Aid",
+                "budget": 108306,
+                "actual": 100258
+            },
+            {
+                "category": "Investment",
+                "budget": 108456,
+                "actual": 92232
+            },
+            {
+                "category": "Loan",
+                "budget": 106480,
+                "actual": 98477
+            },
+            {
+                "category": "Product A",
+                "budget": 110977,
+                "actual": 98903
+            }
+        ],
+        "expenses": [
+            {
+                "category": "Advertising",
+                "budget": 109712,
+                "actual": 98074
+            },
+            {
+                "category": "Rent",
+                "budget": 109789,
+                "actual": 93159
+            },
+            {
+                "category": "Transportation",
+                "budget": 106393,
+                "actual": 88672
+            }
+        ]
+    },
+    "mso@example.com": {
+        "income": [
+            {
+                "category": "Financial Aid",
+                "budget": 108306,
+                "actual": 100258
+            },
+            {
+                "category": "Investment",
+                "budget": 108456,
+                "actual": 92232
+            }
+        ],
+        "expenses": [
+            {
+                "category": "Advertising",
+                "budget": 109712,
+                "actual": 98074
+            },
+            {
+                "category": "Rent",
+                "budget": 109789,
+                "actual": 93159
+            },
+            {
+                "category": "Transportation",
+                "budget": 106393,
+                "actual": 88672
+            }
+        ]
+    },
+    "dave@example.com": {
+        "income": [
+            {
+                "category": "Financial Aid",
+                "budget": 108306,
+                "actual": 100258
+            },
+            {
+                "category": "Investment",
+                "budget": 108456,
+                "actual": 92232
+            },
+            {
+                "category": "Loan",
+                "budget": 106480,
+                "actual": 98477
+            },
+            {
+                "category": "Product A",
+                "budget": 110977,
+                "actual": 98903
+            },
+            {
+                "category": "sidehustle",
+                "budget": 10000,
+                "actual": 11000
+            }
+        ],
+        "expenses": [
+            {
+                "category": "Advertising",
+                "budget": 109712,
+                "actual": 98074
+            },
+            {
+                "category": "Rent",
+                "budget": 109789,
+                "actual": 93159
+            },
+            {
+                "category": "Transportation",
+                "budget": 106393,
+                "actual": 88672
+            },
+            {
+                "category": "food",
+                "budget": 15000,
+                "actual": 14000
+            }
+        ]
+    },
+    "john@example.com": {
+        "income": [
+            {
+                "category": "dad",
+                "budget": 5000,
+                "actual": 5660
+            },
+            {
+                "category": "",
+                "budget": 0,
+                "actual": 0
+            }
+        ],
+        "expenses": [
+            {
+                "category": "rent",
+                "budget": 3000,
+                "actual": 2500
+            }
+        ]
+    }
+}

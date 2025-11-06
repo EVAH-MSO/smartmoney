@@ -1,0 +1,67 @@
+<div class="profile-container">
+  <h2>User Profile & Settings</h2>
+  <p>Update your profile picture, name, password, and theme preference.</p>
+
+  <!-- Profile picture upload -->
+  <div class="profile-pic-section">
+    <img 
+      [src]="profilePic" 
+      alt="Profile Picture" 
+      class="profile-pic"
+    />
+    <label for="profilePicInput" class="file-label">
+      Change Profile Picture
+    </label>
+    <input 
+      type="file" 
+      id="profilePicInput" 
+      (change)="onFileSelected($event)" 
+      accept="image/*"
+    />
+  </div>
+
+  <!-- Profile form -->
+  <div class="profile-form">
+    <label for="nameInput">Name:</label>
+    <input 
+      id="nameInput" 
+      type="text" 
+      [(ngModel)]="name" 
+      placeholder="Enter your name"
+    />
+
+    <label for="emailInput">Email (read-only):</label>
+    <input 
+      id="emailInput" 
+      type="email" 
+      [(ngModel)]="email" 
+      readonly
+    />
+
+    <label for="passwordInput">New Password:</label>
+    <input 
+      id="passwordInput" 
+      type="password" 
+      [(ngModel)]="password" 
+      placeholder="New password"
+    />
+
+    <label for="confirmPasswordInput">Confirm Password:</label>
+    <input 
+      id="confirmPasswordInput" 
+      type="password" 
+      [(ngModel)]="confirmPassword" 
+      placeholder="Confirm new password"
+    />
+
+    <label for="themeSelect">Theme:</label>
+    <select id="themeSelect" [(ngModel)]="theme">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+
+    <button (click)="updateProfile()">Save Changes</button>
+
+    <p class="message" *ngIf="message">{{ message }}</p>
+  </div>
+</div>

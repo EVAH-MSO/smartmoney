@@ -1,0 +1,47 @@
+<body>
+<div class="container">
+  <h3>Login</h3>
+
+  <form (ngSubmit)="login()" autocomplete="on">
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        class="form-control"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+        autofocus
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        class="form-control"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      />
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit" [disabled]="loading">
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
+    <p class="error-message" *ngIf="message">{{ message }}</p>
+
+    <div class="text-center mt-3">
+      <a routerLink="/register">Don’t have an account? Register</a>
+    </div>
+  </form>
+</div>
+
+  
+</body>

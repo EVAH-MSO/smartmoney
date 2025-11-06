@@ -1,0 +1,67 @@
+<body>
+    <div class="container">
+  <h3>Register</h3>
+  <form (ngSubmit)="register()">
+    <div class="mb-3">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        class="form-control"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        class="form-control"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        class="form-control"
+        placeholder="Enter password"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        class="form-control"
+        placeholder="Confirm password"
+        required
+      />
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit" [disabled]="loading">
+      {{ loading ? 'Registering...' : 'Register' }}
+    </button>
+
+    <div class="text-center mt-3">
+      <a routerLink="/login">Already have an account? Login</a>
+    </div>
+  </form>
+</div>
+
+</body>

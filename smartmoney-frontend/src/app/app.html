@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+
+<nav>
+  <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">🏠 Dashboard</a>
+  <a routerLink="/insights" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">📊 Insights</a>
+  <a routerLink="/chatbot" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">🤖 Chatbot</a>
+  <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">profile</a>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <p>© 2025 Smart Money App</p>
+</footer>
