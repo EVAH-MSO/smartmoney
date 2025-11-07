@@ -1,18 +1,26 @@
 <h2>🤖 Smart Money Chatbot</h2>
 
 <div class="chat-container">
-  <div class="messages">
-    <div *ngFor="let msg of messages" [class]="msg.sender">
-      <p>{{ msg.text }}</p>
+  <div class="chat-box">
+    <div *ngFor="let msg of messages" class="message" [ngClass]="msg.sender">
+      <div class="bubble">{{ msg.text }}</div>
+    </div>
+
+    <div *ngIf="isLoading" class="message bot">
+      <div class="bubble">Typing...</div>
     </div>
   </div>
 
-  <div class="input-area">
+  <form class="input-area" (ngSubmit)="sendMessage()">
+    <label for="chatInput" class="visually-hidden">Message</label>
     <input
-      [(ngModel)]="userInput"
-      (keyup.enter)="sendMessage()"
-      placeholder="Ask me something..."
+      id="chatInput"
+      name="chatInput"
+      [(ngModel)]="userMessage"
+      placeholder="Type your message..."
+      autocomplete="off"
+      required
     />
-    <button (click)="sendMessage()">Send</button>
-  </div>
+    <button type="submit">Send</button>
+  </form>
 </div>

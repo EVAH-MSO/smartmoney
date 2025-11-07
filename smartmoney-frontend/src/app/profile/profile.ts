@@ -18,6 +18,7 @@ export class Profile implements OnInit {
   confirmPassword = '';
   message = '';
 
+  // ✅ Fallback default image
   profilePic: string = 'assets/default-profile.png';
   selectedFile: File | null = null;
 
@@ -28,6 +29,7 @@ export class Profile implements OnInit {
 
   ngOnInit() {
     const localUserRaw = localStorage.getItem('user');
+
     if (!localUserRaw) {
       this.router.navigate(['/login']);
       return;
@@ -35,19 +37,27 @@ export class Profile implements OnInit {
 
     try {
       const userData = JSON.parse(localUserRaw);
+
       this.name = userData.name || '';
       this.email = userData.email || '';
-      this.profilePic = userData.profilePic ? userData.profilePic : this.profilePic;
       this.theme = userData.theme || 'light';
 
-      // 🔹 Apply saved theme immediately on load
-      document.body.className = this.theme;
+      // ✅ If user has no profile image, keep the default
+      this.profilePic =
+        userData.profilePic && userData.profilePic.trim() !== ''
+          ? userData.profilePic
+          : 'assets/default-profile.png';
+
+      // ✅ Apply saved theme immediately
+      document.body.classList.remove('light', 'dark');
+      document.body.classList.add(this.theme);
     } catch (e) {
-      console.error('Error parsing local storage user:', e);
+      console.error('Error parsing local user data:', e);
       this.router.navigate(['/login']);
     }
   }
 
+  // ✅ Handles profile image preview before saving
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -55,17 +65,20 @@ export class Profile implements OnInit {
 
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
-        this.profilePic = e.target?.result as string;
+        if (e.target?.result) {
+          this.profilePic = e.target.result as string;
+        }
       };
       reader.readAsDataURL(this.selectedFile);
     }
   }
 
+  // ✅ Main update function
   updateProfile() {
     this.message = '';
 
     if (this.password && this.password !== this.confirmPassword) {
-      this.message = 'Passwords do not match!';
+      this.message = '⚠️ Passwords do not match!';
       return;
     }
 
@@ -82,27 +95,28 @@ export class Profile implements OnInit {
       .subscribe({
         next: (res) => {
           if (res.success) {
-            this.message = 'Profile updated successfully!';
+            this.message = '✅ Profile updated successfully!';
 
-            // 🔹 Update local storage
+            // ✅ Update local storage data
             const localUser = JSON.parse(localStorage.getItem('user') || '{}');
             localUser.name = this.name;
             localUser.theme = this.theme;
             localUser.profilePic = res.profilePic || this.profilePic;
             localStorage.setItem('user', JSON.stringify(localUser));
 
-            // 🔹 Apply the new theme immediately
-            document.body.className = this.theme;
+            // ✅ Apply the new theme immediately
+            document.body.classList.remove('light', 'dark');
+            document.body.classList.add(this.theme);
 
-            // 🔹 Update the profile image
+            // ✅ Update image preview
             this.profilePic = res.profilePic || this.profilePic;
           } else {
-            this.message = res.message || 'Update failed.';
+            this.message = res.message || '❌ Profile update failed.';
           }
         },
         error: (err) => {
           console.error('Update profile error:', err);
-          this.message = 'Error updating profile.';
+          this.message = '⚠️ Error updating profile.';
         },
       });
   }

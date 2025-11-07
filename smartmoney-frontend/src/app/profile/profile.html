@@ -1,24 +1,27 @@
+<body>
 <div class="profile-container">
   <h2>User Profile & Settings</h2>
   <p>Update your profile picture, name, password, and theme preference.</p>
 
   <!-- Profile picture upload -->
-  <div class="profile-pic-section">
-    <img 
-      [src]="profilePic" 
-      alt="Profile Picture" 
-      class="profile-pic"
-    />
-    <label for="profilePicInput" class="file-label">
-      Change Profile Picture
-    </label>
-    <input 
-      type="file" 
-      id="profilePicInput" 
-      (change)="onFileSelected($event)" 
-      accept="image/*"
-    />
-  </div>
+    <div class="profile-pic-section">
+      <!-- ✅ Larger profile image with fallback and cleaner binding -->
+      <img
+        [src]="profilePic || 'assets/default-profile.png'"
+        alt="Profile Picture"
+        class="profile-pic"
+      />
+
+      <label for="profilePicInput" class="file-label">
+        Change Profile Picture
+      </label>
+      <input
+        type="file"
+        id="profilePicInput"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
 
   <!-- Profile form -->
   <div class="profile-form">
@@ -65,3 +68,4 @@
     <p class="message" *ngIf="message">{{ message }}</p>
   </div>
 </div>
+</body>

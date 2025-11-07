@@ -1,83 +1,153 @@
+/* 🌈 Page & container */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
 .profile-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #f0f4f8;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 420px;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+  transition: 0.3s ease;
 }
 
 .profile-container h2 {
-  text-align: center;
-  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .profile-container p {
-  text-align: center;
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 14px;
 }
 
+/* 🖼 Profile picture section */
 .profile-pic-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .profile-pic {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1rem;
-  border: 3px solid #1a73e8;
+  border: 5px solid #e5e7eb;
+  margin-bottom: 12px;
+  background: url('https://cdn-icons-png.flaticon.com/512/847/847969.png') center/cover no-repeat;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+
+.file-label {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.file-label:hover {
+  background: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* 🧾 Form styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .profile-form label {
-  display: block;
-  margin: 0.5rem 0 0.2rem;
-  font-weight: bold;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
-.profile-form input, .profile-form select {
+.profile-form input,
+.profile-form select {
   width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 1rem;
+  padding: 10px 12px;
+  margin-bottom: 18px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 1.2rem;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-.profile-form button {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.3rem;
-  background-color: #1a73e8;
+.profile-form input:focus,
+.profile-form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* ✅ Buttons */
+button {
+  background: #28a745;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
-.profile-form button:hover {
-  background-color: #155ab6;
-  transform: scale(1.02);
+button:hover {
+  background: #218838;
+  transform: translateY(-1px);
 }
 
+/* 💬 Success message */
 .message {
+  margin-top: 15px;
+  color: #28a745;
+  font-weight: 500;
   text-align: center;
-  font-size: 1.2rem;
-  color: green;
-}
-body.light {
-  background-color: #ffffff;
-  color: #000000;
 }
 
-body.dark {
-  background-color: #121212;
-  color: #ffffff;
+/* ✨ Subtle entry animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive tweaks */
+@media (max-width: 480px) {
+  .profile-container {
+    width: 100%;
+    padding: 30px 25px;
+  }
+
+  .profile-pic {
+    width: 130px;
+    height: 130px;
+  }
 }

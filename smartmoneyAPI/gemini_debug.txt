@@ -1,0 +1,33 @@
+Response:
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hey there! What can I do for you?"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 2,
+    "candidatesTokenCount": 10,
+    "totalTokenCount": 797,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2
+      }
+    ],
+    "thoughtsTokenCount": 785
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "9NYNaZyOK9qO28oPiaHWwQ4"
+}
+
+Error:
