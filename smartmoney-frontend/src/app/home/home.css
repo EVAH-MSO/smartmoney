@@ -1,4 +1,5 @@
 /* General Layout */
+
 body, html {
   margin: 0;
   padding: 0;
@@ -11,42 +12,83 @@ body, html {
 }
 
 .home-container {
-  display: flex;
-  min-height: 100vh;
+  position: relative; /* keep sidebar & content positioning */
+  background-image: url('/assets/code-bg.png'); /* path to your image */
+  background-size: cover;       /* cover the entire area */
+  background-repeat: no-repeat; /* no tiling */
+  background-position: center;  /* center the image */
+  background-attachment: fixed; /* optional: makes it stay while scrolling */
+  z-index: 0;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: linear-gradient(180deg, #1a237e, #283593);
-  color: #fff;
-  position: fixed;
+/* Make sure all content stays above the background */
+.sidebar, .main-content, footer {
+  position: relative;
+
+  z-index: 1;
+}
+
+/* Optional: add a subtle overlay to make text more readable */
+.home-container::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8); /* adjust opacity for readability */
+  z-index: 0;
+}
+
+
+/* Sidebar */
+/* =======================
+   FIXED & RESPONSIVE SIDEBAR
+======================= */
+.sidebar {
+  position: fixed; /* stays in place on scroll */
+  top: 0;
+  left: 0;
+  width: 200px;
   height: 100vh;
-  padding: 20px;
+  padding: 25px 20px;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, #1a237e, #3949ab);
+  color: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
 }
 
 .sidebar.visible {
   transform: translateX(0);
 }
 
+/* Logo styling */
 .logo {
   font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: left;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
 }
 
 .logo span {
   color: #ffeb3b;
+  text-shadow: 0 2px 8px rgba(255, 235, 59, 0.6);
 }
 
+/* Navigation links */
 .nav-links {
   display: flex;
   flex-direction: column;
@@ -57,35 +99,80 @@ body, html {
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: background 0.3s, transform 0.2s;
+  font-size: 17px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateX(4px);
+  background: rgba(255,255,255,0.2);
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* Divider */
 .divider {
   width: 100%;
   height: 1px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255,0.3);
   margin: 20px 0;
 }
 
+/* Auth Link */
 .auth-link {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
   text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  background: rgba(255,235,59,0.4);
+  color: #1a237e;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Adjust main content to fit beside sidebar */
+.main-content {
+  margin-left: 260px;
+  padding: 40px;
+  width: calc(100% - 260px);
+  transition: margin-left 0.3s ease;
+}
+
+/* For small screens — collapsible sidebar */
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.visible {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 25px;
+  }
 }
 
 /* Main content */
 .main-content {
-  margin-left: 270px;
-  padding: 40px;
-  width: 100%;
+  margin-left: 262px;
+  padding: 0px;
+   width: calc(100% - 262x); 
+    transition: margin-left 0.3s ease;
 }
 
 /* Hero Section */
@@ -371,7 +458,7 @@ display: block;
   transform: scale(1.1);
 }
 /* =======================
-   General Section Styling
+   Sections: Privacy, Terms, Help
 ======================= */
 #privacy-policy, 
 #terms-of-service, 
@@ -381,36 +468,26 @@ display: block;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s forwards;
-  animation-delay: 0.3s;
   border-top: 1px solid #e0e0e0;
+  border-radius: 15px;
+  margin-bottom: 50px;
 }
 
 /* Section Background Colors */
-#privacy-policy {
-  background-color: #fdfdfd;
-}
+#privacy-policy { background-color: #e2cfcf; }
+#terms-of-service { background-color: #f3bdbd; }
+#help-center { background-color: #fbeded; }
 
-#terms-of-service {
-  background-color: #f9f9f9;
-}
-
-#help-center {
-  background-color: #f5f5f5;
-}
-
-/* =======================
-   Section Headings
-======================= */
+/* Headings */
 #privacy-policy h2, 
 #terms-of-service h2, 
 #help-center h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #1e1e2f;
   position: relative;
 }
 
-/* Underline animation */
 #privacy-policy h2::after, 
 #terms-of-service h2::after, 
 #help-center h2::after {
@@ -429,63 +506,83 @@ display: block;
   width: 120px;
 }
 
-/* =======================
-   Paragraph Styling
-======================= */
+/* Paragraphs */
 #privacy-policy p, 
 #terms-of-service p, 
 #help-center p {
   font-size: 2rem;
   line-height: 1.8;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-/* =======================
-   List Styling
-======================= */
+/* Lists */
 #privacy-policy ul, 
 #terms-of-service ul, 
 #help-center ul {
   list-style: disc inside;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 20px;
+  margin: 15px 0 25px 0;
+  padding-left: 20px;
 }
 
 #privacy-policy ul li, 
 #terms-of-service ul li, 
 #help-center ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 2rem;
+  line-height: 1.7;
   color: #444;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-/* =======================
-   Links Styling
-======================= */
+/* Staggered list items */
+#privacy-policy ul li:nth-child(1),
+#terms-of-service ul li:nth-child(1),
+#help-center ul li:nth-child(1) { animation-delay: 0.1s; }
+
+#privacy-policy ul li:nth-child(2),
+#terms-of-service ul li:nth-child(2),
+#help-center ul li:nth-child(2) { animation-delay: 0.2s; }
+
+#privacy-policy ul li:nth-child(3),
+#terms-of-service ul li:nth-child(3),
+#help-center ul li:nth-child(3) { animation-delay: 0.3s; }
+
+#privacy-policy ul li:nth-child(4),
+#terms-of-service ul li:nth-child(4),
+#help-center ul li:nth-child(4) { animation-delay: 0.4s; }
+
+#privacy-policy ul li:nth-child(5),
+#terms-of-service ul li:nth-child(5),
+#help-center ul li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Links Styling */
 #privacy-policy a, 
 #terms-of-service a, 
 #help-center a {
   color: #ff4081;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 #privacy-policy a:hover, 
 #terms-of-service a:hover, 
 #help-center a:hover {
   text-decoration: underline;
+  color: #e91e63;
+  transform: scale(1.05);
 }
 
 /* =======================
-   Fade-in Animation
+   Animations
 ======================= */
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
+
 
 
 /* Footer */

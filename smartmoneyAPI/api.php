@@ -202,7 +202,7 @@ if ($action === 'getDashboard') {
 }
 
 // -------------------- UPDATE PROFILE --------------------
-// -------------------- UPDATE PROFILE --------------------
+
 if ($action === 'updateProfile') {
     $name = $_POST['name'] ?? '';
     $theme = $_POST['theme'] ?? '';

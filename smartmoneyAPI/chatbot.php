@@ -10,12 +10,22 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit();
 }
 
-// ✅ Read input
+// ✅ Read input JSON
 $data = json_decode(file_get_contents("php://input"), true);
 $userMessage = $data["message"] ?? "";
 
-// ✅ Gemini API key
-$apiKey = "AIzaSyDG1WRY4aNbZrJpnXpUEWZV-ohpnkxF4Z0"; // replace with your real Gemini key
+// ✅ Load API key (from environment or .env)
+$apiKey = getenv("GEMINI_API_KEY");
+
+if (!$apiKey && file_exists(__DIR__ . "/.env")) {
+    $env = parse_ini_file(__DIR__ . "/.env");
+    $apiKey = $env["GEMINI_API_KEY"] ?? null;
+}
+
+if (!$apiKey) {
+    echo json_encode(["reply" => "Error: Missing Gemini API key."]);
+    exit;
+}
 
 // ✅ Prepare request payload
 $payload = [
@@ -24,11 +34,10 @@ $payload = [
     ]
 ];
 
-// ✅ Send request
+// ✅ API endpoint
 $url = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-pro:generateContent?key=" . $apiKey;
 
-
-
+// ✅ Send request
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
@@ -39,8 +48,10 @@ $response = curl_exec($ch);
 $error = curl_error($ch);
 curl_close($ch);
 
-// ✅ Write debug log
-file_put_contents("gemini_debug.txt", "Response:\n" . $response . "\nError:\n" . $error);
+// ✅ Log (only for local testing, optional)
+if (file_exists(__DIR__ . "/gemini_debug.txt") || !getenv("VERCEL")) {
+    file_put_contents("gemini_debug.txt", "Response:\n" . $response . "\nError:\n" . $error);
+}
 
 // ✅ Handle result
 if ($error) {
@@ -60,3 +71,4 @@ if (isset($result["candidates"][0]["content"]["parts"][0]["text"])) {
 } else {
     echo json_encode(["reply" => "Gemini returned an unexpected format", "raw" => $result]);
 }
+?>

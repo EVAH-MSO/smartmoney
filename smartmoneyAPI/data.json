@@ -123,6 +123,16 @@
                 "category": "food",
                 "budget": 15000,
                 "actual": 14000
+            },
+            {
+                "category": "clothes",
+                "budget": 2000,
+                "actual": 4000
+            },
+            {
+                "category": "sherehe",
+                "budget": 40000,
+                "actual": 3000000
             }
         ]
     },
